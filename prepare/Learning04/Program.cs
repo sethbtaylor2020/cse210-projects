@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 class Reference
 {
@@ -52,63 +51,46 @@ class Word
 class Scripture
 {
     Reference reference;
-    List<Word> words;
-    Random random;
+    Word[] words;
+    int nextToHide = 0;
 
     public Scripture(string text, Reference refObj)
     {
         reference = refObj;
-        words = new List<Word>();
-        random = new Random();
-
         string[] parts = text.Split(' ');
-        foreach (string part in parts)
+        words = new Word[parts.Length];
+
+        for (int i = 0; i < parts.Length; i++)
         {
-            words.Add(new Word(part));
+            words[i] = new Word(parts[i]);
         }
     }
 
-   public void HideRandomWord()
-{
-    List<Word> visible = new List<Word>();
-    foreach (Word word in words)
+    public void HideNextWord()
     {
-        if (!word.isHidden);
+        
+        if (nextToHide < words.Length); 
         {
-            visible.Add(word);
+            words[nextToHide].Hide();  
+            nextToHide++;
         }
     }
-
-    if (visible.Count > 0)
-    {
-        int index = random.Next(visible.Count);
-        visible[index].Hide();
-    }
-}
-
 
     public bool AllWordsHidden()
     {
-        foreach (Word word in words)
-        {
-            if (!word.isHidden)
-            {
-                return false;
-            }
-        }
-        return true;
+        return nextToHide >= words.Length;
     }
 
     public string GetDisplayText()
     {
         string output = reference.GetDisplayText() + " - ";
 
-        foreach (Word word in words)
+        for (int i = 0; i < words.Length; i++)
         {
-            output += word.Display() + " ";
+            output += words[i].Display() + " ";
         }
 
-        return output.Trim();
+        return output;
     }
 }
 
@@ -123,10 +105,11 @@ class Program
         while (!scripture.AllWordsHidden())
         {
             Console.WriteLine(scripture.GetDisplayText());
-            Console.WriteLine("Press Enter to hide a word.");
+            Console.WriteLine("\nPress Enter to hide the next word.");
             Console.ReadLine();
-            scripture.HideRandomWord();
+            scripture.HideNextWord();
             Console.WriteLine();
         }
+
     }
 }
