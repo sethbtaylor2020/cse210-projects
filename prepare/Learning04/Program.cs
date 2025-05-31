@@ -1,23 +1,41 @@
 using System;
 
-class Reference
+class Reference  //updated constructor for the reference class
 {
-    string book;
-    int chapter;
-    int verse;
+    private string _book;
+    private int _chapter;
+    private int _verse;
+    private int _endVerse;
 
-    public Reference(string theBook, int theChapter, int theVerse)
+    public Reference(string book, int chapter, int verse)
     {
-        book = theBook;
-        chapter = theChapter;
-        verse = theVerse;
+        _book = book;
+        _chapter = chapter;
+        _verse = verse;
+        _endVerse = -1; 
+    }
+
+    public Reference(string book, int chapter, int verse, int endVerse)
+    {
+        _book = book;
+        _chapter = chapter;
+        _verse = verse;
+        _endVerse = endVerse;
     }
 
     public string GetDisplayText()
     {
-        return book + " " + chapter + ":" + verse;
+        if (_endVerse == -1)
+        {
+            return $"{_book} {_chapter}:{_verse}";
+        }
+        else
+        {
+            return $"{_book} {_chapter}:{_verse}-{_endVerse}";
+        }
     }
 }
+
 
 class Word
 {
