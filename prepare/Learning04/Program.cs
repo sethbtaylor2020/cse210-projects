@@ -1,6 +1,6 @@
 using System;
 
-class Reference  //updated constructor for the reference class
+class Reference  //updated constructor for the reference class I think this what you were talking about. if not let me know please
 {
     private string _book;
     private int _chapter;
