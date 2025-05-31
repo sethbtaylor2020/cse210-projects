@@ -123,7 +123,7 @@ class Program
         while (!scripture.AllWordsHidden())
         {
             Console.WriteLine(scripture.GetDisplayText());
-            Console.WriteLine("\nPress Enter to hide the next word.");
+            Console.WriteLine("Press Enter to hide the next word.");
             Console.ReadLine();
             scripture.HideNextWord();
             Console.WriteLine();
