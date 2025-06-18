@@ -1,0 +1,57 @@
+using System;
+using System.Threading;
+
+public class Activity
+{
+    public string StartMessage;
+    public string EndMessage;
+    public string AnimationText;
+
+    public Activity(string startMessage, string endMessage, string animationText)
+    {
+        StartMessage = startMessage;
+        EndMessage = endMessage;
+        AnimationText = animationText;
+    }
+
+    public void DisplayStartMessage()
+    {
+        Console.WriteLine($"This is the: {StartMessage}");
+    }
+
+    public void DisplayEndMessage()
+    {
+        Thread.Sleep(500);
+        Console.WriteLine($"Good Job! You just completed the: {EndMessage}");
+    }
+
+    public void Animation()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            Console.Write("+");
+            Thread.Sleep(500);
+            Console.Write("\b \b");
+            Console.Write("-");
+            Thread.Sleep(500);
+            Console.Write("\b \b");
+        }
+    }
+}
+
+public class Breathing : Activity
+{
+    public string BreathingMessage;
+
+    public Breathing(string breathingMessage)
+        : base("Breathing Start", "Breathing End", "Breathing Anim")
+    {
+        BreathingMessage = breathingMessage;
+    }
+
+    public void DisplayBreathingMessage()
+    {
+        DisplayStartMessage();
+        Console.WriteLine($"Breathing Activity: {BreathingMessage}");
+    }
+}
