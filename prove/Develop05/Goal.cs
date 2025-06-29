@@ -28,9 +28,16 @@ public abstract class Goal
 //-------------------------------------------------------------ETERNAL GOAL----------------------------------------------------------------
 public class EternalGoal : Goal
 {
+    private bool _isComplete;
     public EternalGoal(string name, string description, int points)
         : base(name, description, points)
     {
+        _isComplete = false;
+    }
+       public EternalGoal(string name, string description, int points, bool isComplete)
+        : base(name, description, points)
+    {
+        _isComplete = isComplete;
     }
 
     public override int EventPoints()
