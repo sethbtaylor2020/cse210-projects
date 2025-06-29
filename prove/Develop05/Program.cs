@@ -100,7 +100,7 @@ class Program
                     }
                     if (type == "EternalGoal")
                     {
-                        goal = new EternalGoal(data[0], data[1], int.Parse(data[2]), bool.Parse(data[3]));
+                        goal = new EternalGoal(data[0], data[1], int.Parse(data[2]));
                     }
 
                     if (goal != null)
